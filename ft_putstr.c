@@ -1,54 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csouza-f <caio@42sp.org.br>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 12:58:22 by csouza-f          #+#    #+#             */
-/*   Updated: 2020/10/17 15:31:30 by csouza-f         ###   ########.fr       */
+/*   Created: 2020/10/17 13:39:10 by csouza-f          #+#    #+#             */
+/*   Updated: 2020/10/17 14:28:55 by csouza-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include <unistd.h>
 
-char *get_line(void)
+int ft_strlen(char *str)
 {
-	char *buffer;
-	char c;
 	int i;
-	
-	//free after	
-	buffer = malloc(sizeof(char) * 1024);
+
 	i = 0;
-	while (1)
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void ft_putstr(char *str)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = ft_strlen(str);
+	while (i < len)
 	{
-		read(0, &c, 1);
-		if (c == '\0' || c == '\n')
-		{
-			buffer[i] = '\0';
-			return (buffer);
-		}
-		else
-			buffer[i] = c;
+		write(1, &str[i], 1);
 		i++;
 	}
-}
-
-void prompt(void)
-{
-	char *line;
-	
-	while (1)
-	{
-		ft_putstr("minishell> ");
-		line = get_line();
-		//ft_putstr(line);
-	}
-}
-
-int main(void)
-{
-	prompt();
-	return (0);
 }
