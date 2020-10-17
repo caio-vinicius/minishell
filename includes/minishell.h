@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csouza-f <caio@42sp.org.br>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 12:58:22 by csouza-f          #+#    #+#             */
-/*   Updated: 2020/10/17 13:22:33 by csouza-f         ###   ########.fr       */
+/*   Created: 2020/10/17 13:16:45 by csouza-f          #+#    #+#             */
+/*   Updated: 2020/10/17 13:18:01 by csouza-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
-int main(void)
-{
-	printf("As beautiful as a shell!\n");
-	return (0);
-}
+#include <stdio.h>
+
+#endif
