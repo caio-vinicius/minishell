@@ -6,7 +6,7 @@
 /*   By: csouza-f <caio@42sp.org.br>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 12:58:22 by csouza-f          #+#    #+#             */
-/*   Updated: 2020/10/18 12:00:42 by csouza-f         ###   ########.fr       */
+/*   Updated: 2020/10/18 20:35:46 by csouza-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,11 @@ int execute(char *argv[])
 	else if (pid < 0)
 		perror("minishell");
 	else
+		wpid = waitpid(pid, &status, WUNTRACED);
 		while (!WIFEXITED(status) && !WIFSIGNALED(status))
 			wpid = waitpid(pid, &status, WUNTRACED);
 	return (1);
 }
-
-
 
 int ms_exit(char **args)
 {
@@ -116,17 +115,15 @@ void prompt(void)
 		args = ft_split(line, ' ');
 		if ((builtin = is_builtin(args)) != -1)
 		{
-			ft_putstr("is built in!");
 			if (builtin == 0)
 				ms_cd(args);
 			else if (builtin == 1)
 				ms_help(args);
 			else if (builtin == 2)
-				ms_exit(args);
+				exit(EXIT_SUCCESS);
 		}
 		else
-			ft_putstr("is not built in!");
-		//execute(args);
+			execute(args);
 	}
 }
 
